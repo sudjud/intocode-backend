@@ -1,8 +1,10 @@
 const Student = require("../models/Student.model.js");
+
 module.exports.studentController = {
   getStudents: async (req, res) => {
     try {
-      res.json(await Student.find({}).populate("review status"));
+      const student = await Student.find().populate("status");
+      res.json(student);
     } catch (error) {
       res.json(error.toString());
     }
@@ -26,7 +28,7 @@ module.exports.studentController = {
           .populate("review")
       );
     } catch (error) {
-      res.json(error.toString(res.json(error.toString())));
+      res.json(error.toString());
     }
   },
   getStudentPaymentNo: async (req, res) => {
@@ -60,6 +62,10 @@ module.exports.studentController = {
     } catch (error) {
       res.json(error.toString());
     }
+  },
+  addReview: async (req, res) => {
+    try {
+    } catch (error) {}
   },
   postStudent: async (req, res) => {
     try {
