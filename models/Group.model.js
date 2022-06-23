@@ -5,7 +5,7 @@ const groupSchema = Schema({
   grade: Number,
   currentWeek: {
     type: Number,
-    default: 1
+    require: false
   },
   finished: {
     type: Boolean,
@@ -15,4 +15,4 @@ const groupSchema = Schema({
 
 const Group = mongoose.model('Group', groupSchema);
 
-module.exports = Group;//asd
+module.exports = Group;
