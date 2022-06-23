@@ -42,11 +42,29 @@ module.exports.groupController = {
   },
   haveOfferPercent: async (req, res) => {
     try {
-      await Student.find({
-        grade: req.params.id, 
-      })
+      const recievedOffer = await Student.find(
+        { grade: req.params.id },
+        { status: '62b44e74a23eaa4c0a1b6785' }
+        ).length;
+      const allStudents = await (await Student.find({})).length;
+      res.json((recievedOffer / allStudents) * 100 )
     } catch (e) {
-      
+      res.json(e);
+    }
+  },
+  getGroup: async (req, res) => {
+    try {
+      res.json(await Group.findById(req.params.id))
+    } catch (e) {
+      res.json(e)
+    }
+  },
+  updateGroup: async (req, res) => {
+    try {
+      await Group.findByIdAndUpdate(req.params.id, {...req.body})
+      res.json('Группа изменена')
+    } catch (e) {
+      res.json(e)
     }
   }
-}
+};
