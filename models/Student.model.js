@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 const studentSchema = mongoose.Schema({
   name: String,
-  grade: Number,
+  grade: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Group",
+  },
   payment: Number,
   review: [
     {
@@ -15,4 +18,5 @@ const studentSchema = mongoose.Schema({
 });
 
 const Student = mongoose.model("Student", studentSchema);
+
 module.exports = Student;
